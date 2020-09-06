@@ -1,0 +1,7 @@
+README.md
+setup.py
+spiderRobot.egg-info/PKG-INFO
+spiderRobot.egg-info/SOURCES.txt
+spiderRobot.egg-info/dependency_links.txt
+spiderRobot.egg-info/top_level.txt
+spider_robot_18DOF/__init__.py
