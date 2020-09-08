@@ -1,6 +1,9 @@
-import Tkinter as tk 
+#!/usr/bin/python3
+
+import tkinter as tk
 import RPi.GPIO as GPIO
 from time import sleep
+from PIL import ImageTk, Image
 
 GPIO21 = 21
 GPIO20 = 20
@@ -11,7 +14,17 @@ GPIO.setup(GPIO20, GPIO.OUT)
 
 master = tk.Tk()
 master.title("GPIO Control")
-master.geometry("300x100")
+master.geometry("800x480") #800x480
+master.configure(background='black')
+
+# https://stackoverflow.com/questions/23901168/how-do-i-insert-a-jpeg-image-into-a-python-tkinter-window
+path = "/home/pi/testScreen.png"
+
+img = ImageTk.PhotoImage(Image.open(path))
+
+panel = tk.Label(master, image = img)
+
+panel.grid(row=3, column=2)
 
 GPIO21_state = True
 GPIO20_State = True
