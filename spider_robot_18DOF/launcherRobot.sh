@@ -10,9 +10,9 @@
 # Exec=/usr/bin/python /home/pi/Projects/spider-robot-18DOF/spider_robot_18DOF/spiderController.py
 # then to make it executable
 # chmod +x /home/pi/.config/autostart/launcher.desktop
-touch /dev/tmp/ctr
-touch /dev/tmp/rtc
-touch /dev/tmp/vid
+touch /dev/shm/ctr
+touch /dev/shm/rtc
+touch /dev/shm/vid
 cd /
 cd home/pi/Projects/spider-robot-18DOF/spider_robot_18DOF
 sudo python3 spiderRobot.py
