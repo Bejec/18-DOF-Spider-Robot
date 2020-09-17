@@ -31,6 +31,10 @@ panel.grid(row=1, column=2, columnspan=5, rowspan=3)
 GPIO21_state = True
 GPIO20_State = True
 
+def update_label(self):
+    self.label.configure(cpuTemp)
+    self.root.after(1000, self.update_label)
+
 def GPIO21button():
 	global GPIO21_state
 	if GPIO21_state == True:

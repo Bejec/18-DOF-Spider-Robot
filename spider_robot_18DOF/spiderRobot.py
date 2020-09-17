@@ -1,6 +1,17 @@
 # https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_gui/py_video_display/py_video_display.html
 import numpy as np
 import cv2
+import threading
+import time
+
+def hello(*args):
+	print(str(args[0])+" It's "+str(time.ctime()))
+	next=int(args[0])+1
+	threading.Timer(0.001, hello,[str(next)]).start()
+
+hello("1")
+
+
 
 cap = cv2.VideoCapture(0)
 
