@@ -11,6 +11,16 @@ def hello(*args):
 
 hello("1")
 
+def txrssir():
+	path = '/proc/net/wireless'
+	contents = open(path, 'r')
+	contents = contents.read().split()
+	data[0] = contents[29].strip('.') 
+	#i might have to add \n after data[0] if i am writing a data[1]
+	rtc = open('/dev/shm/rtc', 'w')
+	rtc.writelines(data)
+	rtc.close()
+	threading.Timer(0.1, txrssir).start()
 
 
 cap = cv2.VideoCapture(0)

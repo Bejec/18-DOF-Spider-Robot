@@ -95,7 +95,11 @@ class main():
 		RSSIC = 'RSSI C: ' + contents[29].strip('.')
 		#print (RSSIC)
 		self.rssiC.configure(text = RSSIC)
-		self.rssiC.after(1000, self.update_RSSI)
+		path1 = '/dev/shm/rtc'
+		data[0] = open(path1, 'r')
+		RSSIR = 'RSSI R: ' + data[0]
+		self.rssiR.configure(text = RSSIR)
+		self.rssiC.after(500, self.update_RSSI)
 
 	def GPIO21button():
 		global GPIO21_state
