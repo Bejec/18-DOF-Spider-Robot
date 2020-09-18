@@ -85,21 +85,30 @@ class main():
 		self.Exitbutton = tk.Button(self.master, text="Exit",bg="red", command=self.master.destroy)
 		self.Exitbutton.grid(row=5, column=9)
 
-		self.master.after(0, self.update_RSSI)
+		self.master.after(0, self.update_RSSIC)
+		self.master.after(0, self.update_RSSIR)
+
 		self.master.mainloop() #should be last line of this definition
 
-	def update_RSSI(self):
+
+	def update_RSSIC(self):
 		path = '/proc/net/wireless'
 		contents = open(path, 'r')
 		contents = contents.read().split() #split at spaces
 		RSSIC = 'RSSI C: ' + contents[29].strip('.')
 		#print (RSSIC)
 		self.rssiC.configure(text = RSSIC)
-		path1 = '/dev/shm/rtc'
-		data[0] = open(path1, 'r')
+		self.rssiC.after(500, self.update_RSSIC)
+
+
+	def update_RSSIR(self):
+		path = '/dev/shm/rtc'
+		data = open(path, 'r')
+		data = data.read()
 		RSSIR = 'RSSI R: ' + data[0]
 		self.rssiR.configure(text = RSSIR)
-		self.rssiC.after(500, self.update_RSSI)
+		self.rssiR.after(500, self.update_RSSIR)
+
 
 	def GPIO21button():
 		global GPIO21_state
