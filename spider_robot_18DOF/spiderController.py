@@ -102,10 +102,10 @@ class main():
 
 
 	def update_RSSIR(self):
-		path = '/dev/shm/rtc'
+		path = '/home/pi/rx/rtc'
 		data = open(path, 'r')
 		data = data.read()
-		RSSIR = 'RSSI R: ' + data[0]
+		RSSIR = 'RSSI R: ' + data
 		self.rssiR.configure(text = RSSIR)
 		self.rssiR.after(500, self.update_RSSIR)
 
