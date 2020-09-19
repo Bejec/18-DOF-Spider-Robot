@@ -11,7 +11,7 @@ def controlToRobot():
 	return
 
 def robotToControl():
-	cmd = 'scp /dev/shm/rtc pi@192.168.86.55:/dev/shm/'
+	cmd = 'scp /dev/shm/rtc pi@192.168.86.55:~/rx'
 	os.system(cmd)
 	return
 
