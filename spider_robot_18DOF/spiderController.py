@@ -42,30 +42,28 @@ class main():
 		self.path = "/home/pi/testScreen.png"
 
 		self.imgsmall = Image.open(self.path)
-		self.new_image = self.imgsmall.resize((400,240))
+		self.new_image = self.imgsmall.resize((533,320))
 		self.new_image.save("/home/pi/testScreenSmall.png")
 		self.newpath = "/home/pi/testScreenSmall.png"
 		self.img = ImageTk.PhotoImage(Image.open(self.newpath))
 		self.panel = tk.Label(self.master, image = self.img)
-		self.panel.grid(row=1, column=2, columnspan=5, rowspan=3)
+		self.panel.grid(row=0, column=0, columnspan=8, rowspan=4)
 
-		self.ONbutton = tk.Button(self.master, text="Plane Move", bg="blue", command=self.GPIO21button)
-		self.ONbutton.grid(row=0, column=0, columnspan=2, rowspan=2)
-
-		self.OFFbutton = tk.Button(self.master, text="Body Pan",bg="blue" , command=self.GPIO20button)
-		self.OFFbutton.grid(row=2, column=0, columnspan=2, rowspan=2)
 
 		self.notifications = tk.Button(self.master, text="Notifications", bg="blue", command=self.GPIO21button)
-		self.notifications.grid(row=0, column=2, columnspan=5)
+		self.notifications.grid(row=4, column=0, columnspan=3, rowspan=2)
+		
+		self.batteryVoltage = tk.Button(self.master, text="Bat V:", bg='black', command=self.GPIO21button)
+		self.batteryVoltage.grid(row=1, column=8)
 
 		self.function1 = tk.Button(self.master, text="func1", bg="blue", command=self.GPIO21button)
-		self.function1.grid(row=4, column=0, columnspan=3, rowspan=2)
+		self.function1.grid(row=1, column=9)
 
 		self.povScreen = tk.Button(self.master, text="Virtual 3rd POV", bg="blue", command=self.GPIO21button)
 		self.povScreen.grid(row=4, column=3, columnspan=3, rowspan=2)
 
 		self.termOut = tk.Button(self.master, text="Terminal Out", bg="blue", command=self.GPIO21button)
-		self.termOut.grid(row=4, rowspan=2, column=6, columnspan=2)
+		self.termOut.grid(row=4, rowspan=2, column=7, columnspan=3)
 
 		self.rssiC = tk.Button(self.master, text="RSSI C", bg="black", fg="white", command=self.GPIO21button)
 		self.rssiC.grid(row=0, column=8)
@@ -73,17 +71,11 @@ class main():
 		self.rssiR = tk.Button(self.master, text="RSSI R", bg="black", fg="white", command=self.GPIO21button)
 		self.rssiR.grid(row=0, column=9)
 
-		self.rotateSlider = tk.Button(self.master, text="Rotate Slider", bg="blue", command=self.GPIO21button)
-		self.rotateSlider.grid(row=1, column=8, columnspan=2)
-
-		self.heightSlider = tk.Button(self.master, text="Height Slider", bg="blue", command=self.GPIO21button)
-		self.heightSlider.grid(row=2, column=8, columnspan=2)
-
 		self.function2 = tk.Button(self.master, text="functions 2", bg="blue", command=self.GPIO21button)
-		self.function2.grid(row=4, rowspan=2, column=8, columnspan=2)
+		self.function2.grid(row=2, column=8)
 
 		self.Exitbutton = tk.Button(self.master, text="Exit",bg="red", command=self.master.destroy)
-		self.Exitbutton.grid(row=5, column=9)
+		self.Exitbutton.grid(row=3, column=9)
 
 		self.master.after(0, self.update_RSSIC)
 		self.master.after(0, self.update_RSSIR)
@@ -108,6 +100,18 @@ class main():
 		RSSIR = 'RSSI R: ' + data
 		self.rssiR.configure(text = RSSIR)
 		self.rssiR.after(500, self.update_RSSIR)
+		
+	def update_battery(self):
+		path = '/home/pi/rx/rtc'
+		data = open(path, 'r')
+		data = data.read()
+		try:
+			batV = 'Bat V: ' + data[1]
+		except:
+			print('no data')
+		else:	
+			self.batteryvoltage.configure(text = batV)
+		self.batteryvoltage.after(500, self.update_battery)
 
 
 	def GPIO21button():
