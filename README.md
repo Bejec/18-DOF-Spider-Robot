@@ -36,4 +36,6 @@ Capital letters signify an acronym
 
 ![](images/layoutDesign.png)
 
+![](images/ControllerDesign.png)
+
 ![](images/softwareArchitecture.png)
