@@ -17,14 +17,14 @@ Robot: Raspberry pi 4 + [Hardware Platform (Not sponsored):](https://www.hiwonde
   * I remember having to install tkinter from source instead of using pip install
 5. Follow instructions in launcher.sh and launcherRobot.sh to setup running python scripts at startup.
 6. Find IP address and update in scpLink.py (Should be updated so that you write to a system file instead of directly in python script)
+7. create RSA keys for each device and share them between each other
 
 ## Documentation: (Currently Working)
 Capital letters signify an acronym
 ### Controller
 1. Controller to Wifi Receive Signal Strength Indicator and Robot to Wifi RSSI displays on controllers screen
   * This was chosen over having one device as a Wireless Access Point becuase range can be significantly increased using wireless routers/extenders at the cost of increased traffic on network although this shouldnt be an issue.
-  * Updates every ? (the file that I read from updates at ?)
-  * Dropout notification when no RSSI is detected for ?*2
+  * Updates every 0.5s
 2. 
 
 ### Robot
